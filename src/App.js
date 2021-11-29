@@ -1,28 +1,50 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from './logo.svg';
 import './App.css';
-import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"; // Supports ESM
+import Woo from './Woo'
+// import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"; // Supports ESM
 
-const WooCommerce = new WooCommerceRestApi({
-  url: 'http://localhost:8888/',
-  consumerKey: 'ck_98e50c0bbe1677f6b81ded7b5e00e8dfe09fdb60',
-  consumerSecret: 'cs_d4ea54a6da5ab2f5fae1e204bf3a95b00aa23497',
-  version: 'wc/v3'
-})
+// const WooCommerce = new WooCommerceRestApi({
+//   url: 'http://localhost:8888/',
+//   consumerKey: 'ck_98e50c0bbe1677f6b81ded7b5e00e8dfe09fdb60',
+//   consumerSecret: 'cs_d4ea54a6da5ab2f5fae1e204bf3a95b00aa23497',
+//   version: 'wc/v3'
+// })
+
+const woo = new Woo('ck_98e50c0bbe1677f6b81ded7b5e00e8dfe09fdb60', 'cs_d4ea54a6da5ab2f5fae1e204bf3a95b00aa23497')
 
 function App() {
+
+  const [products, setProducts] = useState([])
+
   useEffect(() => {
-    WooCommerce.get("products")
-      .then((response) => {
-        console.log(response.data);
+    woo.request('http://localhost:8888/wp-json/wc/v3/products', 'get')
+      .then((data) => {
+        setProducts(data)
       })
       .catch((error) => {
-        console.log(error.response.data);
-      });
-  }, [])
+        console.log(error.response.data)
+      })
+  })
+
+  // useEffect(() => {
+  //   WooCommerce.get("products")
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.response.data);
+  //     });
+  // }, [])
   return (
     <div className="App">
-      <p>Learn React</p>
+      {
+        products.map(
+          (product) => {
+            return <p key={product.id}>{product.name}</p>
+          }
+        )
+      }
     </div>
   );
 }
