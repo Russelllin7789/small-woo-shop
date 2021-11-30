@@ -1,52 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import logo from './logo.svg';
-import './App.css';
-import Woo from './Woo'
-// import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"; // Supports ESM
+import React from 'react'
+import './App.css'
+import HomePage from './view/home/homePage'
+import Nav from './view/layout/nav'
 
-// const WooCommerce = new WooCommerceRestApi({
-//   url: 'http://localhost:8888/',
-//   consumerKey: 'ck_98e50c0bbe1677f6b81ded7b5e00e8dfe09fdb60',
-//   consumerSecret: 'cs_d4ea54a6da5ab2f5fae1e204bf3a95b00aa23497',
-//   version: 'wc/v3'
-// })
-
-const woo = new Woo('ck_98e50c0bbe1677f6b81ded7b5e00e8dfe09fdb60', 'cs_d4ea54a6da5ab2f5fae1e204bf3a95b00aa23497')
-
-function App() {
-
-  const [products, setProducts] = useState([])
-
-  useEffect(() => {
-    woo.request('http://localhost:8888/wp-json/wc/v3/products', 'get')
-      .then((data) => {
-        setProducts(data)
-      })
-      .catch((error) => {
-        console.log(error.response.data)
-      })
-  })
-
-  // useEffect(() => {
-  //   WooCommerce.get("products")
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error.response.data);
-  //     });
-  // }, [])
+const App = () => {
   return (
     <div className="App">
-      {
-        products.map(
-          (product) => {
-            return <p key={product.id}>{product.name}</p>
-          }
-        )
-      }
+      <HomePage />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
