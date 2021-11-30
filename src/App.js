@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.css'
+import './App.scss'
 import HomePage from './view/home/homePage'
 import Nav from './view/layout/nav'
 
