@@ -2,13 +2,9 @@ import React from 'react'
 import './App.scss'
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect
 } from 'react-router-dom';
 
-import HomePage from './view/home/homePage'
+import AppRoutes from './view/layout/appRoutes'
 import Nav from './view/layout/nav'
 
 const App = () => {
@@ -16,9 +12,7 @@ const App = () => {
     <Router>
       <Nav />
       <main className="mdc-top-app-bar--fixed-adjust">
-        <div className="App">
-          <HomePage />
-        </div>
+        <AppRoutes />
       </main>
     </Router>
   )
