@@ -23,7 +23,7 @@ const AppRoutes = () => {
       </Route>
       <Route path='/products' exact element={<ProductsIndexPage />}>
       </Route>
-      {/* <Route path='/products/:id' exact element={<ProductsShowPage />}>
+      <Route path='/products/:id' exact element={<ProductsShowPage />}>
       </Route>
       <Route path='/orders' exact element={<OrdersIndexPage />}>
       </Route>
@@ -38,7 +38,7 @@ const AppRoutes = () => {
       <Route path='/checkout' exact element={<CheckoutPage />}>
       </Route>
       <Route path='*' element={<NoMatch />}>
-      </Route> */}
+      </Route>
     </Routes>
   )
 }
