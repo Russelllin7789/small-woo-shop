@@ -3,6 +3,21 @@
 @import '~@material/react-drawer/dist/drawer.css';
 @import '~@material/react-list/dist/list.css';
 
+.mdc-top-app-bar__title {
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.mdc-drawer {
+  .mdc-list {
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
 .App {
   text-align: center;
 }

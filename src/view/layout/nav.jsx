@@ -33,6 +33,12 @@ const Nav = () => {
           <Link to="/products">
             <ListItem>All Products</ListItem>
           </Link>
+          <Link to="/cart">
+            <ListItem>Cart</ListItem>
+          </Link>
+          <Link to="/orders">
+            <ListItem>Order Record</ListItem>
+          </Link>
         </List>
       </Drawer>
       <TopAppBar>
