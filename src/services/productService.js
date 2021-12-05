@@ -14,10 +14,11 @@ class ProductService {
       per_page: 3
     })
       .then((response) => {
-        setProducts(response.data)
+        return response.data
       })
       .catch((error) => {
-        console.log(error.response.data)
+        console.log(error)
+        return []
       })
   }
 }

@@ -7,11 +7,15 @@ const ProductsIndexPage = () => {
 
   const [products, serProducts] = useState([])
 
-  productService.getProducts(1)
 
   useEffect(() => {
+    const loadFunc = async () => {
+      const result = await productService.getProducts(1)
+      console.log(result)
+    }
 
-  }, [])
+    loadFunc()
+  }, [productService])
 
   return (
     <h1>ProductsIndexPage</h1>
