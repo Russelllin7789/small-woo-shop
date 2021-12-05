@@ -1,15 +1,32 @@
 import React from "react";
 import ProductCard from './productCard'
+import {
+  Cell,
+  Grid,
+  Row
+} from '@material/react-layout-grid'
 
 const ProductCardList = ({ products }) => {
   return (
-    <div>
-      {
-        products.map((product) => {
-          return <ProductCard key={product.id} product={product} />
-        })
-      }
-    </div>
+    <Grid>
+      <Row>
+        {
+          products.map((product) => {
+            return (
+              <Cell
+                key={product.id}
+                desktopColumns={3}
+                phoneColumns={4}
+                tableColumns={4}
+              >
+                <ProductCard
+                  product={product} />
+              </Cell>
+            )
+          })
+        }
+      </Row>
+    </Grid>
   )
 }
 
