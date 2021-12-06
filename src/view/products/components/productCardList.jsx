@@ -17,7 +17,7 @@ const ProductCardList = ({ products }) => {
                 key={product.id}
                 desktopColumns={3}
                 phoneColumns={4}
-                tableColumns={4}
+                tabletColumns={4}
               >
                 <ProductCard
                   product={product} />

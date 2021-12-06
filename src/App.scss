@@ -7,6 +7,10 @@
 @import '~@material/react-layout-grid/dist/layout-grid.css';
 
 
+a {
+  text-decoration: none;
+}
+
 .mdc-top-app-bar__title {
   a {
     color: white;
