@@ -8,25 +8,36 @@ import Card, {
 } from '@material/react-card';
 import Button from '@material/react-button';
 
+const OnSalePriceString = ({ product }) => {
+  return (
+    <>
+      <del style={{ color: 'red' }}>
+        {product.regularPrice}
+      </del> <b>${product.price}</b>
+    </>
+  )
+}
+
 const ProductCard = ({ product }) => {
   const url = `/products/${product.id}`
+  const priceElement = product.onSale ? <OnSalePriceString product={product} /> : (<>${product.price}</>)
+
   return (
     <Link to={url}>
       <Card outlined className="productCard">
         <CardMedia
           square
-          imageUrl="https://via.placeholder.com/600x450"
+          imageUrl={product.images[0].src}
         />
         <CardPrimaryContent>
           <div style={{ padding: '0px 16px' }}>
-            <p className="title">title</p>
-            <p className="desc">description</p>
-            {product.id}
+            <p className="title">{product.name}</p>
+            <p className="desc" dangerouslySetInnerHTML={{ __html: product.description }}></p>
           </div>
         </CardPrimaryContent>
         <CardActions>
           <CardActionButtons>
-            <Button>price</Button>
+            <Button>{priceElement}</Button>
           </CardActionButtons>
         </CardActions>
       </Card>

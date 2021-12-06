@@ -24,7 +24,7 @@ const ProductsIndexPage = () => {
   }, [productService])
 
   return (
-    <div>
+    <div style={{ maxWidth: '1200px', margin: 'auto' }}>
       <ProductCardList products={products} />
     </div>
   )

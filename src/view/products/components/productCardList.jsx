@@ -6,7 +6,7 @@ import {
   Row
 } from '@material/react-layout-grid'
 
-const ProductCardList = ({ products }) => {
+const ProductCardList = ({ products = [] }) => {
   return (
     <Grid>
       <Row>
