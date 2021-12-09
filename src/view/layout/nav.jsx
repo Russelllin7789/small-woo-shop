@@ -26,6 +26,9 @@ const Nav = () => {
         }}
       >
         <List>
+          <Link to="/">
+            <ListItem>Home Page</ListItem>
+          </Link>
           <Link to="/products">
             <ListItem>All Products</ListItem>
           </Link>
