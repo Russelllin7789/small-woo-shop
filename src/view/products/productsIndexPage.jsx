@@ -7,6 +7,8 @@ import LoadingView from "../layout/loadingView";
 const productService = new ProductService()
 
 let isInited = false
+let page
+let isFinished = false
 
 const ProductsIndexPage = () => {
 
