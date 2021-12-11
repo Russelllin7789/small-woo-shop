@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import ProductService from "../../services/productService";
 import ProductCardList from "./components/productCardList";
 import Button from "@material/react-button";
@@ -15,7 +15,7 @@ const ProductsIndexPage = () => {
 
   const [products, setProducts] = useState([])
 
-  const loadMoreProducts = async () => {
+  const loadMoreProducts = useCallback(async () => {
     if (isLastPage.current) {
       return
     }
@@ -36,7 +36,7 @@ const ProductsIndexPage = () => {
       ])
     }
 
-  }
+  }, [products])
 
 
   useEffect(() => {
