@@ -57,6 +57,7 @@ const ProductsIndexPage = () => {
   return (
     isInited.current ?
       (<div style={{ maxWidth: '1200px', margin: 'auto' }}>
+        <h1 style={{ textAlign: 'center' }}>All Products</h1>
         <ProductCardList products={products} />
         <div style={{ textAlign: 'center', padding: '36px 0' }}>
           {
