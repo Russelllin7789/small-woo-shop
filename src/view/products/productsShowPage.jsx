@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
   useParams,
+  Navigate,
 } from 'react-router-dom'
 import LoadingView from '../layout/loadingView'
 import ProductService from '../../services/productService'
@@ -22,10 +23,22 @@ const ProductsShowPage = () => {
     loadFunc()
   }, [id])
 
+  const contentView = (() => {
+    if (isInited.current) {
+      if (product) {
+        return (<h1>{product.name}</h1>)
+      } else {
+        return (<Navigate to="/products" />)
+      }
+    } else {
+      return (<LoadingView />)
+    }
+  })()
+
   return (
     <div>
       {
-        (isInited.current && (product)) ? (<h1>{product.name}</h1>) : (<LoadingView />)
+        contentView
       }
     </div>
   )
