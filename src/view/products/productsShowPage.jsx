@@ -9,8 +9,25 @@ const productService = new ProductService()
 
 const ProductsShowPage = () => {
   let { id } = useParams()
+  let isInited = useRef(false)
+  const [product, setProduct] = useState([])
+
+  useEffect(() => {
+    const loadFunc = async () => {
+      const result = await productService.getProductById(id)
+      isInited.current = true
+      setProduct(result)
+    }
+
+    loadFunc()
+  }, [id])
+
   return (
-    <h1>ProductsShowPage</h1>
+    <div>
+      {
+        (isInited.current && (product)) ? (<h1>{product.name}</h1>) : (<LoadingView />)
+      }
+    </div>
   )
 }
 

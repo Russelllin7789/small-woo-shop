@@ -1,4 +1,5 @@
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"; // Supports ESM
+import Product from "../models/product";
 
 const WooCommerce = new WooCommerceRestApi({
   url: 'http://localhost:8888/',
@@ -20,6 +21,16 @@ class ProductService {
         console.log(error)
         return []
       })
+  }
+
+  getProductById = (id) => {
+    return WooCommerce.get(`products/${id}`, {
+    }).then((response) => {
+      return new Product(response.data)
+    }).catch((error) => {
+      console.log(error)
+      return null
+    })
   }
 }
 
