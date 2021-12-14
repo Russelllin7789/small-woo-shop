@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import {
   useParams,
   Navigate,
@@ -23,8 +23,9 @@ const ProductsShowPage = () => {
     loadFunc()
   }, [id])
 
-  const contentView = (() => {
-    if (isInited.current) {
+  const initFlag = isInited.current
+  const contentView = useMemo(() => {
+    if (initFlag) {
       if (product) {
         return (<h1>{product.name}</h1>)
       } else {
@@ -33,7 +34,7 @@ const ProductsShowPage = () => {
     } else {
       return (<LoadingView />)
     }
-  })()
+  }, [product, initFlag])
 
   return (
     <div>
