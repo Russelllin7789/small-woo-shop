@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom'
 import LoadingView from '../layout/loadingView'
 import ProductService from '../../services/productService'
+import ProductContentView from "./components/productContentView";
 
 const productService = new ProductService()
 
