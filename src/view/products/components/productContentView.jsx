@@ -16,6 +16,7 @@ const ProductContentView = ({ product }) => {
     setQunatity(value)
   }, [])
 
+  // can add quantiity in cart into cookie within browser
   const addInCart = useCallback((e) => {
     console.log('added!')
   })
@@ -23,7 +24,15 @@ const ProductContentView = ({ product }) => {
   return (
     <Grid>
       <Row>
-        <Cell></Cell>
+        <Cell
+          desktopColumns={6}
+          phoneColumns={4}
+          tabletColumns={8}
+        >
+          <img
+            src={product.imageUrl}
+            style={{ width: '100%' }} />
+        </Cell>
       </Row>
     </Grid>
   )
