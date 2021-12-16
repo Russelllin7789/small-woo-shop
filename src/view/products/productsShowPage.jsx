@@ -28,7 +28,7 @@ const ProductsShowPage = () => {
   const contentView = useMemo(() => {
     if (initFlag) {
       if (product) {
-        return (<h1>{product.name}</h1>)
+        return (<ProductContentView product={product} />)
       } else {
         return (<Navigate to="/products" />)
       }
