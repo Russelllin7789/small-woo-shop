@@ -33,6 +33,40 @@ const ProductContentView = ({ product }) => {
             src={product.imageUrl}
             style={{ width: '100%' }} />
         </Cell>
+        <Cell
+          desktopColumns={6}
+          phoneColumns={4}
+          tabletColumns={8}
+        >
+          <div style={{ padding: '12px 36px' }}>
+            <h1>{product.name}</h1>
+            <div dangerouslySetInnerHTML={{
+              __html: product.description
+            }}>
+            </div>
+            <div>
+              <Select
+                outlined
+                label=''
+                value={quantity}
+                onChange={selectQuantity}
+              >
+                {
+                  [1, 2, 3, 4, 5].map((number) => {
+                    return (<Option key={number} value={number}>{number}</Option>)
+                  })
+                }
+              </Select>
+              <Button
+                onClick={addInCart}
+                style={{ margin: '0 16px' }}
+                outlined
+              >
+                Add Into Cart
+              </Button>
+            </div>
+          </div>
+        </Cell>
       </Row>
     </Grid>
   )
