@@ -2,7 +2,6 @@ import shopModel from './shopModel'
 
 class Product extends shopModel {
   get name() {
-    console.log('go here')
     return this.getValue('name')
   }
 
@@ -11,12 +10,10 @@ class Product extends shopModel {
   }
 
   get description() {
-    console.log('go here')
     return this.getValue('description')
   }
 
   get price() {
-    console.log('go here')
     return this.getValue('price')
   }
 

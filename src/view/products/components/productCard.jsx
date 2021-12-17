@@ -7,16 +7,17 @@ import Card, {
   CardActionButtons,
 } from '@material/react-card';
 import Button from '@material/react-button';
+import OnSalePriceString from './onSaleString'
 
-const OnSalePriceString = ({ product }) => {
-  return (
-    <>
-      <del style={{ color: 'red' }}>
-        {product.regularPrice}
-      </del> <b>${product.price}</b>
-    </>
-  )
-}
+// const OnSalePriceString = ({ product }) => {
+//   return (
+//     <>
+//       <del style={{ color: 'red' }}>
+//         {product.regularPrice}
+//       </del> <b>${product.price}</b>
+//     </>
+//   )
+// }
 
 const ProductCard = ({ product }) => {
   const url = `/products/${product.id}`

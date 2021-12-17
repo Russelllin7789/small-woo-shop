@@ -6,6 +6,7 @@ import {
 } from '@material/react-layout-grid'
 import Button from '@material/react-button'
 import Select, { Option } from '@material/react-select'
+import OnSalePriceString from './onSaleString'
 
 const ProductContentView = ({ product }) => {
   // UI status rather then submitted
@@ -20,6 +21,8 @@ const ProductContentView = ({ product }) => {
   const addInCart = useCallback((e) => {
     console.log('added!')
   })
+
+  const priceElement = product.onsale ? <OnSalePriceString product={product} /> : (<>${product.price}</>)
 
   return (
     <Grid>
@@ -43,6 +46,9 @@ const ProductContentView = ({ product }) => {
             <div dangerouslySetInnerHTML={{
               __html: product.description
             }}>
+            </div>
+            <div style={{ marginBottom: '16px' }}>
+              {priceElement}
             </div>
             <div>
               <Select
