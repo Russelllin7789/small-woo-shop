@@ -32,6 +32,13 @@ class ProductService {
       return null
     })
   }
+
+  getProductByIds = (ids) => {
+    return WooCommerce.get('products', {
+      page: 1,
+      include: ids
+    })
+  }
 }
 
 export default ProductService

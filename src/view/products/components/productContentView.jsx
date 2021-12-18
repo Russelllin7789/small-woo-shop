@@ -7,6 +7,9 @@ import {
 import Button from '@material/react-button'
 import Select, { Option } from '@material/react-select'
 import OnSalePriceString from './onSaleString'
+import CartService from "../../../services/cartService";
+
+const cartService = new CartService()
 
 const ProductContentView = ({ product }) => {
   // UI status rather then submitted
@@ -19,7 +22,8 @@ const ProductContentView = ({ product }) => {
 
   // can add quantiity in cart into cookie within browser
   const addInCart = useCallback((e) => {
-    console.log('added!')
+    cartService.addIntoCart(product.id, quantity)
+    window.location.replace('/products')
   })
 
   const priceElement = product.onsale ? <OnSalePriceString product={product} /> : (<>${product.price}</>)

@@ -6,7 +6,8 @@ class CartService {
   constructor() {
     // initialize cookies
     this.cart = Cookies.get(CART_KEY)
-    if (this.cart === null) {
+    // console.log('cookies:', this.cart)
+    if (this.cart == null || this.cart == {}) {
       this.cart = {}
       this.save()
     } else {
@@ -16,7 +17,8 @@ class CartService {
   }
 
   save = () => {
-    Cookies.set(CART_KEY, this.cart)
+    // save this cart as pure text
+    Cookies.set(CART_KEY, JSON.stringify(this.cart))
   }
 
   getCartItem = (productId) => {
