@@ -19,9 +19,31 @@ const CartItemsPopUp = () => {
   const [open, setOpen] = useState(false)
   // set anchor for menu element to show
   const [anchorElement, setAnchorElement] = useState(null)
+  const [cartItemDetails, setCartItemDetails] = useState([])
 
   const cartItems = cartService.getCartItems()
-  const productIds = cartItems
+  const productIds = cartItems.map((cartItem) => {
+    return cartItem.productId
+  })
+
+  useEffect(() => {
+    const loadCartItemsDetail = async () => {
+      const products = await productService.getProductByIds(productIds)
+      const result = products.map((product) => {
+        const cartItem = cartService.getCartItem(product.id)
+        if (!cartItem) {
+          return null
+        }
+
+        return new CartItemDetail(product, cartItem.quantity)
+      }).filter(x => x)
+      // filter will filter out those values that are equivalent with 'false'
+
+      setCartItemDetails(result)
+    }
+
+    loadCartItemsDetail()
+  }, [productService])
 
   return (
     <div
