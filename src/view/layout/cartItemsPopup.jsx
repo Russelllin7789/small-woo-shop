@@ -7,17 +7,21 @@ import MaterialIcon from '@material/react-material-icon';
 import Button from '@material/react-button'
 import { Chip } from '@material/react-chips'
 
+import CartItemDetail from '../../models/cartItemDetail'
+
 import CartService from "../../services/cartService";
 import ProductService from "../../services/productService";
 
 const cartService = new CartService()
 const productService = new ProductService()
 
-
 const CartItemsPopUp = () => {
   const [open, setOpen] = useState(false)
   // set anchor for menu element to show
   const [anchorElement, setAnchorElement] = useState(null)
+
+  const cartItems = cartService.getCartItems()
+  const productIds = cartItems
 
   return (
     <div

@@ -22,12 +22,19 @@ class CartService {
   }
 
   getCartItem = (productId) => {
-    const cartItem = this.cart[productId]
-    if (!cartItem || !this.isCartItemValid(cartItem, productId)) {
-      this.removeCartItem(productId)
+    const productIdKey = parseInt(productId)
+    const cartItem = this.cart[productIdKey]
+    if (!cartItem || !this.isCartItemValid(cartItem, productIdKey)) {
+      this.removeCartItem(productIdKey)
       return
     }
     return cartItem
+  }
+
+  getCartItems = () => {
+    return Object.keys(this.cart).map((productId) => {
+      return this.getCartItem(productId)
+    })
   }
 
   addIntoCart = (productId, quantity) => {

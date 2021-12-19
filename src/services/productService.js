@@ -37,6 +37,14 @@ class ProductService {
     return WooCommerce.get('products', {
       page: 1,
       include: ids
+    }).then((response) => {
+      const products = response.data.map((rawData) => {
+        return new Product(rawData)
+      })
+      return products
+    }).catch((error) => {
+      console.log(error)
+      return []
     })
   }
 }
