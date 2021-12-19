@@ -3,9 +3,16 @@ import {
   Link
 } from 'react-router-dom'
 import MenuSurface, { Corner } from '@material/react-menu-surface'
-import MaterialIcon from '@material/react-material-icon'
+import MaterialIcon from '@material/react-material-icon';
 import Button from '@material/react-button'
 import { Chip } from '@material/react-chips'
+
+import CartService from "../../services/cartService";
+import ProductService from "../../services/productService";
+
+const cartService = new CartService()
+const productService = new ProductService()
+
 
 const CartItemsPopUp = () => {
   const [open, setOpen] = useState(false)
@@ -19,7 +26,7 @@ const CartItemsPopUp = () => {
     >
       <Chip
         label={10}
-        leadingIcon={<MaterialIcon icon='shopping_cart' />}
+        leadingIcon={<MaterialIcon icon='info' />}
         onClick={() => setOpen(true)}
       />
       <MenuSurface
