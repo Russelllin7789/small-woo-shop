@@ -10,6 +10,8 @@ import Nav from './view/layout/nav'
 const App = () => {
   return (
     <Router>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"></link>
       <Nav />
       <main className="mdc-top-app-bar--fixed-adjust">
         <AppRoutes />
