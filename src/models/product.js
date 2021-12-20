@@ -35,6 +35,14 @@ class Product extends shopModel {
 
     return ''
   }
+
+  get productName() {
+    return this.getValue('name')
+  }
+
+  get productId() {
+    return this.getValue('id')
+  }
 }
 
 export default Product

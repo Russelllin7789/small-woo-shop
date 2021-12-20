@@ -39,6 +39,7 @@ const CartItemsPopUp = () => {
       }).filter(x => x)
       // filter will filter out those values that are equivalent with 'false'
 
+      console.log('results:', result)
       setCartItemDetails(result)
     }
 
@@ -52,7 +53,7 @@ const CartItemsPopUp = () => {
     >
       <Chip
         label={10}
-        leadingIcon={<MaterialIcon icon='info' />}
+        leadingIcon={<MaterialIcon icon='shopping_cart' />}
         onClick={() => setOpen(true)}
       />
       <MenuSurface
@@ -63,8 +64,13 @@ const CartItemsPopUp = () => {
       >
         <div style={{ padding: '8px 16px' }}>
           <p>購物車商品：</p>
-          <p>item OOOO X 1</p>
-          <p>item XXXX X 2</p>
+          {
+            cartItemDetails.map((item) => {
+              return (<p key={item.product.id}>
+                {item.product.name} x {item.quantity}
+              </p>)
+            })
+          }
           <hr />
           <Link to="/cart">
             <Button outlined>結帳</Button>
