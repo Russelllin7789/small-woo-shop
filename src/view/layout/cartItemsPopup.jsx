@@ -21,26 +21,32 @@ const CartItemsPopUp = () => {
   const [anchorElement, setAnchorElement] = useState(null)
   const [cartItemDetails, setCartItemDetails] = useState([])
 
-  const cartItems = cartService.getCartItems()
-  const productIds = cartItems.map((cartItem) => {
-    return cartItem.productId
-  })
+  const total = cartItemDetails.reduce((sum, item) => {
+    sum += item.quantity
+  }, 0)
 
   useEffect(() => {
     const loadCartItemsDetail = async () => {
-      const products = await productService.getProductByIds(productIds)
-      const result = products.map((product) => {
-        const cartItem = cartService.getCartItem(product.id)
-        if (!cartItem) {
-          return null
-        }
+      const cartItems = cartService.getCartItems()
 
-        return new CartItemDetail(product, cartItem.quantity)
-      }).filter(x => x)
-      // filter will filter out those values that are equivalent with 'false'
+      if (cartItems && cartItems.length > 0) {
+        const productIds = cartItems.map((cartItem) => {
+          return cartItem.productId
+        })
+        const products = await productService.getProductByIds(productIds)
+        const result = products.map((product) => {
+          const cartItem = cartService.getCartItem(product.id)
+          if (!cartItem) {
+            return null
+          }
 
-      console.log('results:', result)
-      setCartItemDetails(result)
+          return new CartItemDetail(product, cartItem.quantity)
+        }).filter(x => x)
+        // filter will filter out those values that are equivalent with 'false'
+
+        console.log('results:', result)
+        setCartItemDetails(result)
+      }
     }
 
     loadCartItemsDetail()
@@ -52,7 +58,7 @@ const CartItemsPopUp = () => {
       ref={setAnchorElement}
     >
       <Chip
-        label={10}
+        label={total}
         leadingIcon={<MaterialIcon icon='shopping_cart' />}
         onClick={() => setOpen(true)}
       />
