@@ -22,7 +22,7 @@ const CartItemsPopUp = () => {
   const [cartItemDetails, setCartItemDetails] = useState([])
 
   const total = cartItemDetails.reduce((sum, item) => {
-    sum += item.quantity
+    return sum += item.quantity
   }, 0)
 
   useEffect(() => {

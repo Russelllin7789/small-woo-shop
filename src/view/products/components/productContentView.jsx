@@ -23,7 +23,7 @@ const ProductContentView = ({ product }) => {
   // can add quantiity in cart into cookie within browser
   const addInCart = useCallback((e) => {
     cartService.addIntoCart(product.id, quantity)
-    window.location.replace('/products')
+    // window.location.replace('/products')
   })
 
   const priceElement = product.onsale ? <OnSalePriceString product={product} /> : (<>${product.price}</>)

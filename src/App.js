@@ -7,16 +7,20 @@ import {
 import AppRoutes from './view/layout/appRoutes'
 import Nav from './view/layout/nav'
 
+const CartContext = React.createContext([])
+
 const App = () => {
   return (
-    <Router>
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet"></link>
-      <Nav />
-      <main className="mdc-top-app-bar--fixed-adjust">
-        <AppRoutes />
-      </main>
-    </Router>
+    <CartContext.Provider value={[]}>
+      <Router>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet"></link>
+        <Nav />
+        <main className="mdc-top-app-bar--fixed-adjust">
+          <AppRoutes />
+        </main>
+      </Router>
+    </CartContext.Provider>
   )
 }
 
