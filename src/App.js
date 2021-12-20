@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.scss'
 import {
   BrowserRouter as Router,
@@ -6,12 +6,13 @@ import {
 
 import AppRoutes from './view/layout/appRoutes'
 import Nav from './view/layout/nav'
-
-const CartContext = React.createContext([])
+import CartContext from './context/cartContext'
 
 const App = () => {
+  const [cartItemDetails, setCartItemDetails] = useState([])
+
   return (
-    <CartContext.Provider value={[]}>
+    <CartContext.Provider value={[cartItemDetails, setCartItemDetails]}>
       <Router>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet"></link>

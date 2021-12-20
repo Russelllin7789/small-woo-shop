@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import {
   Cell,
   Grid,
@@ -8,12 +8,15 @@ import Button from '@material/react-button'
 import Select, { Option } from '@material/react-select'
 import OnSalePriceString from './onSaleString'
 import CartService from "../../../services/cartService";
+import CartContext from "../../../context/cartContext";
+import CartItemDetail from "../../../models/cartItemDetail";
 
 const cartService = new CartService()
 
 const ProductContentView = ({ product }) => {
   // UI status rather then submitted
   const [quantity, setQunatity] = useState(1)
+  const [cartItemDetails, setCartItemDetails] = useContext(CartContext)
 
   const selectQuantity = useCallback((e) => {
     const { value } = e.target
@@ -22,7 +25,26 @@ const ProductContentView = ({ product }) => {
 
   // can add quantiity in cart into cookie within browser
   const addInCart = useCallback((e) => {
-    cartService.addIntoCart(product.id, quantity)
+    const quantityForSubmit = parseInt(quantity)
+    if (cartService.getCartItem(product.id)) {
+      const newValue = cartItemDetails.map((item) => {
+        if (item.product.id === product.id) {
+          return new CartItemDetail(product, item.quantity + quantityForSubmit)
+        } else {
+          return item
+        }
+      })
+      setCartItemDetails(newValue)
+    } else {
+      setCartItemDetails(
+        [
+          ...cartItemDetails,
+          new CartItemDetail(product, quantityForSubmit)
+        ]
+      )
+    }
+
+    cartService.addIntoCart(product.id, quantityForSubmit)
     // window.location.replace('/products')
   })
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Link
 } from 'react-router-dom'
@@ -11,6 +11,7 @@ import CartItemDetail from '../../models/cartItemDetail'
 
 import CartService from "../../services/cartService";
 import ProductService from "../../services/productService";
+import CartContext from "../../context/cartContext";
 
 const cartService = new CartService()
 const productService = new ProductService()
@@ -19,7 +20,7 @@ const CartItemsPopUp = () => {
   const [open, setOpen] = useState(false)
   // set anchor for menu element to show
   const [anchorElement, setAnchorElement] = useState(null)
-  const [cartItemDetails, setCartItemDetails] = useState([])
+  const [cartItemDetails, setCartItemDetails] = useContext(CartContext)
 
   const total = cartItemDetails.reduce((sum, item) => {
     return sum += item.quantity
