@@ -13,7 +13,7 @@ import CartItemsList from "./component/cartItemsList";
 const CartIndexPage = () => {
   return (
     <div>
-      <h1>cartIndexPage</h1>
+      {/* <h1>cartIndexPage</h1> */}
       <Grid>
         <Row>
           <Cell
