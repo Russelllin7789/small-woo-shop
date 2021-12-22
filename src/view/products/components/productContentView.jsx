@@ -16,7 +16,7 @@ const cartService = new CartService()
 const ProductContentView = ({ product }) => {
   // UI status rather then submitted
   const [quantity, setQunatity] = useState(1)
-  const [cartItemDetails, setCartItemDetails] = useContext(CartContext)
+  const [cartItemDetails, setCartItemDetails, mergeQuantityToCartItemsDetail] = useContext(CartContext)
 
   const selectQuantity = useCallback((e) => {
     const { value } = e.target
@@ -26,23 +26,13 @@ const ProductContentView = ({ product }) => {
   // can add quantiity in cart into cookie within browser
   const addInCart = useCallback((e) => {
     const quantityForSubmit = parseInt(quantity)
-    if (cartService.getCartItem(product.id)) {
-      const newValue = cartItemDetails.map((item) => {
-        if (item.product.id === product.id) {
-          return new CartItemDetail(product, item.quantity + quantityForSubmit)
-        } else {
-          return item
-        }
-      })
-      setCartItemDetails(newValue)
-    } else {
-      setCartItemDetails(
-        [
-          ...cartItemDetails,
-          new CartItemDetail(product, quantityForSubmit)
-        ]
-      )
-    }
+    const newCartItemDetails = mergeQuantityToCartItemsDetail(
+      cartItemDetails,
+      product,
+      quantityForSubmit
+    )
+
+    setCartItemDetails(newCartItemDetails)
 
     cartService.addIntoCart(product.id, quantityForSubmit)
     // window.location.replace('/products')

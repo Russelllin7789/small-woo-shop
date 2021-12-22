@@ -40,7 +40,7 @@ const QuantitySelector = ({ label, value, onChange }) => {
 
 const CartItemsList = () => {
   // const cartItems = []
-  const [cartItemDetails, setcartItemDetails] = useContext(CartContext)
+  const [cartItemDetails, setcartItemDetails, mergeQuantityToCartItemsDetail] = useContext(CartContext)
   return (
     <div>
       <List avatarList twoLine>
@@ -81,6 +81,13 @@ const CartItemsList = () => {
                         (e) => {
                           const { value } = e.target
                           const newQuantity = Number.parseInt(value)
+                          const newCartItemDetails = mergeQuantityToCartItemsDetail(
+                            cartItemDetails,
+                            product,
+                            newQuantity,
+                            false
+                          )
+                          setcartItemDetails(newCartItemDetails)
                           cartService.updateCartItem(
                             CartService.createCartItem(product.id, newQuantity)
                           )
