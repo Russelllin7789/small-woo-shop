@@ -94,7 +94,20 @@ const CartItemsList = () => {
                         }
                       }
                     />
-                    <MaterialIcon icon='delete' style={{ marginLeft: '16px' }} onClick={() => { }} />
+                    <MaterialIcon icon='delete' style={{ marginLeft: '16px' }} onClick={
+                      () => {
+                        const newCartItemDetails = cartItemDetails.map(
+                          (item) => {
+                            if (item.product.id === product.id) {
+                              return null
+                            }
+                            return item
+                          }).filter(x => x)
+                        console.log('items after deletion:', newCartItemDetails)
+                        setcartItemDetails(newCartItemDetails)
+                        cartService.removeCartItem(product.id)
+                      }}
+                    />
                   </ListItem>
                   <hr />
                 </>

@@ -30,9 +30,12 @@ const CartItemsPopUp = () => {
     const loadCartItemsDetail = async () => {
       const cartItems = cartService.getCartItems()
 
-      if (cartItems && cartItems.length > 0) {
+      if (!!cartItems && cartItems.length > 0) {
+        console.log('cart items:', cartItems)
         const productIds = cartItems.map((cartItem) => {
-          return cartItem.productId
+          if (!!cartItem) {
+            return cartItem.productId
+          }
         })
         const products = await productService.getProductByIds(productIds)
         const result = products.map((product) => {
@@ -51,7 +54,7 @@ const CartItemsPopUp = () => {
     }
 
     loadCartItemsDetail()
-  }, [productService])
+  }, [setCartItemDetails])
 
   return (
     <div

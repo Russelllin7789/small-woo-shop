@@ -63,7 +63,9 @@ class CartService {
   }
 
   removeCartItem = (productId) => {
+    console.log('product id:', productId)
     this.cart[productId] = null
+    this.save()
   }
 
   isCartItemValid = (cartItem, productId) => {
