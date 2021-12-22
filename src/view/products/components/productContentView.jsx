@@ -35,8 +35,14 @@ const ProductContentView = ({ product }) => {
     setCartItemDetails(newCartItemDetails)
 
     cartService.addIntoCart(product.id, quantityForSubmit)
-    // window.location.replace('/products')
-  })
+    window.location.replace('/products')
+  }, [
+    cartItemDetails,
+    mergeQuantityToCartItemsDetail,
+    product,
+    quantity,
+    setCartItemDetails
+  ])
 
   const priceElement = product.onsale ? <OnSalePriceString product={product} /> : (<>${product.price}</>)
 
@@ -50,7 +56,9 @@ const ProductContentView = ({ product }) => {
         >
           <img
             src={product.imageUrl}
-            style={{ width: '100%' }} />
+            style={{ width: '100%' }}
+            alt={product.name}
+          />
         </Cell>
         <Cell
           desktopColumns={6}

@@ -52,10 +52,9 @@ const CartItemsList = () => {
             cartItemDetails.map((cartItem) => {
               const { product, quantity } = cartItem
               return (
-                <>
+                <React.Fragment key={product.id}>
                   <ListItem
                     activated={false}
-                    key={product.id}
                     style={{ height: '88px', padding: '8px 16px' }}
                   >
                     <ListItemGraphic
@@ -110,7 +109,7 @@ const CartItemsList = () => {
                     />
                   </ListItem>
                   <hr />
-                </>
+                </React.Fragment>
               )
             })
           }
