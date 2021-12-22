@@ -16,6 +16,13 @@ class CartService {
     console.log('cookies:', this.cart)
   }
 
+  static createCartItem = (productId, quantity = 0) => {
+    return {
+      productId: productId,
+      quantity: quantity
+    }
+  }
+
   save = () => {
     // save this cart as pure text
     Cookies.set(CART_KEY, JSON.stringify(this.cart))
@@ -38,7 +45,9 @@ class CartService {
   }
 
   addIntoCart = (productId, quantity) => {
-    const cartItem = this.getCartItem(productId) || { productId: productId, quantity: 0 }
+    // change the initialization way
+    // const cartItem = this.getCartItem(productId) || { productId: productId, quantity: 0 }
+    const cartItem = this.getCartItem(productId) || CartService.createCartItem(productId, 0)
     cartItem.quantity += Math.max(1, quantity)
     this.updateCartItem(cartItem)
   }

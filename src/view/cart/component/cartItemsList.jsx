@@ -78,7 +78,13 @@ const CartItemsList = () => {
                     <QuantitySelector
                       value={quantity}
                       onChange={
-                        (e) => { }
+                        (e) => {
+                          const { value } = e.target
+                          const newQuantity = Number.parseInt(value)
+                          cartService.updateCartItem(
+                            CartService.createCartItem(product.id, newQuantity)
+                          )
+                        }
                       }
                     />
                     <MaterialIcon icon='delete' style={{ marginLeft: '16px' }} onClick={() => { }} />
