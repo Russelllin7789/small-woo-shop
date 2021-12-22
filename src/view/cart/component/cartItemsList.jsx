@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import List, {
   ListGroup,
   ListGroupSubheader,
@@ -9,9 +9,19 @@ import List, {
 import MaterialIcon from '@material/react-material-icon';
 import Select, { Option } from '@material/react-select';
 import CartContext from '../../../context/cartContext'
+import CartService from "../../../services/cartService";
+
+const cartService = new CartService()
 
 const QuantitySelector = ({ label, value, onChange }) => {
-  const valueArray = Array.from(Array(100).keys()).map(x => x + 1)
+  // const valueArray = Array.from(Array(100).keys()).map(x => x + 1)
+  const valueArray = useMemo(
+    () => {
+      let tempArray = Array.from(Array(101).keys())
+      tempArray.shift()
+      return tempArray
+    }, [])
+
   return (
     <Select
       outlined
