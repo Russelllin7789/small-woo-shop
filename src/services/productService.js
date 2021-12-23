@@ -3,8 +3,8 @@ import Product from "../models/product";
 
 const WooCommerce = new WooCommerceRestApi({
   url: 'http://localhost:8888/',
-  consumerKey: 'ck_98e50c0bbe1677f6b81ded7b5e00e8dfe09fdb60',
-  consumerSecret: 'cs_d4ea54a6da5ab2f5fae1e204bf3a95b00aa23497',
+  consumerKey: 'ck_6fac49b6cc20e4df9df284b32e281dad767c3cd9',
+  consumerSecret: 'cs_74afc150c7ceaa7ae5a24cbdc48fcb7cbe07b0c4',
   version: 'wc/v3'
 })
 
