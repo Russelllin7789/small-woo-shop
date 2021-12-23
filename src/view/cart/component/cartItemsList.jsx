@@ -73,7 +73,7 @@ const CartItemsList = () => {
                         Other Info...
                       </span>
                     </span>
-                    <ListItemMeta meta='' />
+                    <ListItemMeta meta={`$${product.price}`} style={{ marginRight: '16px', color: 'red' }} />
                     <QuantitySelector
                       value={quantity}
                       onChange={
