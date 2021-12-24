@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Button from '@material/react-button'
-import CartItemsList from './component/cartItemsList'
 import CartContext from "../../context/cartContext";
+import OrderService from "../../services/orderService";
+
+const orderService = new OrderService()
 
 const data = {
   payment_method: "bacs",
@@ -41,14 +43,21 @@ const data = {
 
 const CheckoutPage = () => {
   const [submitting, setSubmitting] = useState(false)
+  const [cartItemDetails] = useContext(CartContext)
   const { shipping } = data
   const buttonText = (submitting) ? '結帳中，請稍候...' : '去結帳'
 
-  // useEffect(() => {
-  //   if (submitting) {
-  //     console.log('send!')
-  //   }
-  // }, [submitting])
+  data.line_items = cartItemDetails.map((item) => {
+    return {
+      product_id: item.product.id,
+      quantity: item.quantity
+    }
+  })
+
+  useEffect(() => {
+    orderService.getPaymentGateways()
+    orderService.getShippingMethods()
+  }, [])
 
   return (
     <div style={{ margin: 'auto', maxWidth: '1200px', textAlign: 'center' }}>
@@ -61,7 +70,7 @@ const CheckoutPage = () => {
       <Button outlined onClick={
         (e) => {
           setSubmitting(true)
-          console.log('send!')
+          orderService.submitOrder(data)
         }
       }
         disabled={submitting}
