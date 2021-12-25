@@ -2,8 +2,10 @@ import React, { useState, useContext, useEffect } from "react";
 import Button from '@material/react-button'
 import CartContext from "../../context/cartContext";
 import OrderService from "../../services/orderService";
+import CartService from '../../services/cartService'
 
 const orderService = new OrderService()
+const cartService = new CartService()
 
 const data = {
   payment_method: "bacs",
@@ -36,7 +38,7 @@ const data = {
     {
       method_id: "flat_rate",
       method_title: "Flat Rate",
-      total: "10.00"
+      total: '10.00'
     }
   ]
 };
@@ -70,7 +72,16 @@ const CheckoutPage = () => {
       <Button outlined onClick={
         (e) => {
           setSubmitting(true)
-          orderService.submitOrder(data)
+          const submitOrder = async () => {
+            const order = await orderService.submitOrder(data)
+            if (order) {
+              cartService.clearCartItems()
+              window.location.replace(`/orders/${order.id}/success`)
+            } else {
+              window.location.replace(`/orders/failed`)
+            }
+          }
+          submitOrder()
         }
       }
         disabled={submitting}

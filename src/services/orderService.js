@@ -1,4 +1,5 @@
 import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api"; // Supports ESM
+import Order from '../models/order'
 
 const WooCommerce = new WooCommerceRestApi({
   url: 'http://localhost:8888/',
@@ -12,6 +13,7 @@ class OrderService {
     return WooCommerce.post('orders', data)
       .then((response) => {
         console.log('data:', response.data)
+        return new Order(response.data)
       })
       .catch((error) => {
         console.log(error)

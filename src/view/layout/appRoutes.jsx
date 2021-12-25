@@ -26,11 +26,11 @@ const AppRoutes = () => {
       </Route>
       <Route path='/orders' exact element={<OrdersIndexPage />}>
       </Route>
+      <Route path='/orders/failed' exact element={<OrdersFailedPage />}>
+      </Route>
       <Route path='/orders/:id' exact element={<OrdersShowPage />}>
       </Route>
       <Route path='/orders/:id/success' exact element={<OrdersSuccessPage />}>
-      </Route>
-      <Route path='/orders/:id/failed' exact element={<OrdersFailedPage />}>
       </Route>
       <Route path='/cart' exact element={<CartIndexPage />}>
       </Route>

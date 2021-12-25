@@ -8,8 +8,7 @@ class CartService {
     this.cart = Cookies.get(CART_KEY)
     // console.log('cookies:', this.cart)
     if (this.cart == null || this.cart == {}) {
-      this.cart = {}
-      this.save()
+      this.clearCartItems()
     } else {
       this.cart = JSON.parse(this.cart)
     }
@@ -65,6 +64,11 @@ class CartService {
   removeCartItem = (productId) => {
     console.log('product id:', productId)
     this.cart[productId] = null
+    this.save()
+  }
+
+  clearCartItems = () => {
+    this.cart = {}
     this.save()
   }
 
