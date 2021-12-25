@@ -63,7 +63,7 @@ const CheckoutPage = () => {
 
   return (
     <div style={{ margin: 'auto', maxWidth: '1200px', textAlign: 'center' }}>
-      <h1>地址</h1>
+      <h1>Address</h1>
       <p>{data.last_name}{data.first_name}</p>
       <p>{data.email}</p>
       <p>{shipping.postcode}{shipping.country}{shipping.state}</p>

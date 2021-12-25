@@ -40,6 +40,17 @@ class OrderService {
         console.log(error)
       })
   }
+
+  getOrder = (id) => {
+    return WooCommerce.get(`orders/${id}`)
+      .then((response) => {
+        return new Order(response.data)
+      })
+      .catch((error) => {
+        console.log(error)
+        return null
+      })
+  }
 }
 
 export default OrderService

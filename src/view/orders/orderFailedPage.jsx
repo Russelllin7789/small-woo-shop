@@ -9,7 +9,7 @@ const OrdersFailedPage = () => {
       <h1>This order was failed! T______T</h1>
       <div style={{ paddingTop: '128px' }}>
         <Link to='/'>
-          Back to HomePage
+          Back to Home Page
         </Link>
       </div>
     </div>
