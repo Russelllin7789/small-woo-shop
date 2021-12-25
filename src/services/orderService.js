@@ -51,6 +51,19 @@ class OrderService {
         return null
       })
   }
+
+  getOrders = () => {
+    return WooCommerce.get('orders')
+      .then((response) => {
+        return response.data.map((rawData) => {
+          return new Order(rawData)
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+        return null
+      })
+  }
 }
 
 export default OrderService
