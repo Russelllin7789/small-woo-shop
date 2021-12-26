@@ -14,8 +14,9 @@ const orderService = new OrderService()
 const productService = new ProductService()
 
 const OrderContentView = ({ order }) => {
+  console.log('order here:', order)
   const isInited = useRef(false)
-  const [orderItems, serOrderItems] = useState([])
+  const [orderItems, setOrderItems] = useState([])
 
   useEffect(() => {
     const loadFunc = async () => {
@@ -47,7 +48,7 @@ const OrderContentView = ({ order }) => {
       <br />
       <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
         {
-          orderItems.map(() => {
+          orderItems.map((orderItem) => {
             const imageUrl = orderItem.imageUrl
             const alt = `${orderItem.name}_image`
             return (
@@ -75,7 +76,7 @@ const OrderContentView = ({ order }) => {
   )
 }
 
-const OrderShowPage = ({ order }) => {
+const OrderShowPage = () => {
   const { id } = useParams()
   const isInited = useRef(false)
   const [order, setOrder] = useState({})

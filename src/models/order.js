@@ -20,7 +20,7 @@ class Order extends shopModel {
   }
 
   get fullAddress() {
-    const { postcode, state, city, address_1, address_2 } = this
+    const { postcode, state, city, address_1, address_2 } = this.shipping
     return `${postcode} ${state} ${city} ${address_1} ${address_2}`
   }
 
@@ -34,8 +34,18 @@ class Order extends shopModel {
 
   get items() {
     if (!this._items) {
-      this._items = this.getValue('line_items').map((lineItem))
+      this._items = this.getValue('line_items').map((lineItem) => {
+        return new OrderItem(lineItem)
+      })
     }
+
+    return this._items
+  }
+
+  get productIds() {
+    return this.items.map((item) => {
+      return item.prodcutId
+    })
   }
 }
 
