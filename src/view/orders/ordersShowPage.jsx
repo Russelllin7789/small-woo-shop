@@ -20,7 +20,8 @@ const OrderContentView = ({ order }) => {
 
   useEffect(() => {
     const loadFunc = async () => {
-      const products = await productService.getProductsByIds()
+      const products = await productService.getProductsByIds(order.productIds)
+      console.log('products:', products)
       isInited.current = true
       const newOrderItems = order.items.map((item) => {
         for (const product of products) {
@@ -35,7 +36,7 @@ const OrderContentView = ({ order }) => {
       setOrderItems(newOrderItems)
     }
     loadFunc()
-  }, [])
+  }, [order.items])
 
   return (
     <div style={{ margin: 'auto', padding: '48px 0', textAlign: 'center', maxWidth: '1200px' }}>
@@ -89,7 +90,7 @@ const OrderShowPage = () => {
     }
 
     loadFunc()
-  }, [])
+  }, [id])
 
   const initFlag = isInited.current
   const contentView = useMemo(() => {

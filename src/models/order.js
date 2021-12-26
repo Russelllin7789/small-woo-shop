@@ -43,7 +43,9 @@ class Order extends shopModel {
   }
 
   get productIds() {
+    // console.log(this.items[0].productId)
     return this.items.map((item) => {
+      console.log(item)
       return item.prodcutId
     })
   }

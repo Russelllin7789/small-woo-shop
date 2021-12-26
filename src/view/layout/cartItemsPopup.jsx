@@ -37,7 +37,7 @@ const CartItemsPopUp = () => {
             return cartItem.productId
           }
         })
-        const products = await productService.getProductByIds(productIds)
+        const products = await productService.getProductsByIds(productIds)
         const result = products.map((product) => {
           const cartItem = cartService.getCartItem(product.id)
           if (!cartItem) {

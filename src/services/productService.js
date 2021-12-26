@@ -33,7 +33,7 @@ class ProductService {
     })
   }
 
-  getProductByIds = (ids) => {
+  getProductsByIds = (ids) => {
     return WooCommerce.get('products', {
       page: 1,
       include: ids

@@ -9,7 +9,6 @@ import Select, { Option } from '@material/react-select'
 import OnSalePriceString from './onSaleString'
 import CartService from "../../../services/cartService";
 import CartContext from "../../../context/cartContext";
-import CartItemDetail from "../../../models/cartItemDetail";
 
 const cartService = new CartService()
 
