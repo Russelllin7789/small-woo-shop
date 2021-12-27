@@ -39,6 +39,9 @@ const Nav = () => {
           <Link to="/orders">
             <ListItem>Order Record</ListItem>
           </Link>
+          <Link to="/login">
+            <ListItem>Log In</ListItem>
+          </Link>
         </List>
       </Drawer>
       <TopAppBar>

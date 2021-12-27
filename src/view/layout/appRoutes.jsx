@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Routes,
   Route,
+  Navigate,
 } from 'react-router-dom';
 
 import HomePage from '../home/homePage'
@@ -13,6 +14,7 @@ import OrdersSuccessPage from '../orders/orderSuccessPage'
 import OrdersFailedPage from '../orders/orderFailedPage'
 import CartIndexPage from '../../view/cart/cartIndexPage'
 import CheckoutPage from '../../view/cart/checkoutPage'
+import CustomerLoginPage from '../customer/logInPage'
 import NoMatch from '../errors/404'
 
 const AppRoutes = () => {
@@ -36,6 +38,15 @@ const AppRoutes = () => {
       </Route>
       <Route path='/checkout' exact element={<CheckoutPage />}>
       </Route>
+      <Route path='/login' exact>
+        <CustomerLoginPage />
+      </Route>
+      <Route
+        path='/logout' exact
+        render={() => {
+          return <Navigate to='/' />
+        }
+        } />
       <Route path='*' element={<NoMatch />}>
       </Route>
     </Routes>
