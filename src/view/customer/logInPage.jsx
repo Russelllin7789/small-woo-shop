@@ -11,11 +11,16 @@ function LogInPage() {
   })
 
   const typeInInput = (e) => {
-
+    const { value, name } = e.target
+    setUIStatus({ ...uiStatus, [name]: value })
   }
 
   const tryToLogin = async (e) => {
-
+    setUIStatus({ ...uiStatus, isLoading: true })
+    const result = await customerService.logIn(
+      uiStatus.email,
+      uiStatus.password
+    )
   }
 
 }
