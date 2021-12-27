@@ -2,6 +2,9 @@ import React, { useState, useContext } from "react";
 import { Cell, Grid, Row } from '@material/react-layout-grid'
 import TextField, { Input } from '@material/react-text-field'
 import Button from '@material/react-button'
+import CustomerService from "../../services/customerService";
+
+const customerService = new CustomerService()
 
 function LogInPage() {
   const [uiStatus, setUIStatus] = useState({
