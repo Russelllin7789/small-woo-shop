@@ -7,10 +7,13 @@ import {
 import AppRoutes from './view/layout/appRoutes'
 import Nav from './view/layout/nav'
 import CartContext from './context/cartContext'
+import IsLogInContext from './context/isLoginContext'
 import CartService from './services/cartService';
+import CustomerService from './services/customerService';
 import CartItemDetail from './models/cartItemDetail';
 
 const cartService = new CartService()
+const customerService = new CustomerService()
 
 const mergeQuantityToCartItemsDetail = (
   cartItemDetails,
@@ -41,18 +44,21 @@ const mergeQuantityToCartItemsDetail = (
 
 const App = () => {
   const [cartItemDetails, setCartItemDetails] = useState([])
+  const [isLogIn, setIsLogIn] = useState(customerService.isLoggedIn())
 
   return (
-    <CartContext.Provider value={[cartItemDetails, setCartItemDetails, mergeQuantityToCartItemsDetail]}>
-      <Router>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"></link>
-        <Nav />
-        <main className="mdc-top-app-bar--fixed-adjust">
-          <AppRoutes />
-        </main>
-      </Router>
-    </CartContext.Provider>
+    <IsLogInContext.Provider value={[isLogIn, setIsLogIn]}>
+      <CartContext.Provider value={[cartItemDetails, setCartItemDetails, mergeQuantityToCartItemsDetail]}>
+        <Router>
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"></link>
+          <Nav />
+          <main className="mdc-top-app-bar--fixed-adjust">
+            <AppRoutes />
+          </main>
+        </Router>
+      </CartContext.Provider>
+    </IsLogInContext.Provider>
   )
 }
 
