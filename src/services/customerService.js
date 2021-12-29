@@ -77,6 +77,22 @@ class CustomerService {
       })
   }
 
+  signUp = (data) => {
+    return WooCommerce.post('customers', data)
+      .then((response) => {
+        if (response.data.length > 0) {
+          const customer = new Customer(response.data[0])
+          this.setCustomerIdToCookie(customer.id)
+        } else {
+          return null
+        }
+      })
+      .catch((error) => {
+        console.log(error.response)
+        return null
+      })
+  }
+
   logOut = () => {
     this.customerStorage['customerId'] = null
     this.saveToCustomerStorage()

@@ -37,10 +37,10 @@ function LogInPage() {
   return (
     <Grid>
       <Row>
-        <Cell></Cell>
-        <Cell>
+        <Cell desktopColumns={3} phoneColumns={0} tabletColumns={6}></Cell>
+        <Cell desktopColumns={6} phoneColumns={4} tabletColumns={6}>
           <div style={{ padding: '80px 0px' }}>
-            <h1 style={{ textAlign: 'center', paddingBottom: '24pxpx' }}></h1>
+            <h1 style={{ textAlign: 'center', paddingBottom: '24pxpx' }}>Sign In</h1>
             <div>
               <TextField
                 outlined
@@ -77,7 +77,7 @@ function LogInPage() {
             }
           </div>
         </Cell>
-        <Cell></Cell>
+        <Cell desktopColumns={3} phoneColumns={0} tabletColumns={6}></Cell>
       </Row>
     </Grid>
   )

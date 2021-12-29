@@ -39,17 +39,24 @@ const Nav = () => {
             <ListItem>Cart</ListItem>
           </Link>
           {
-            isLogin ? (<>
-              <Link to="/orders">
-                <ListItem>Order Record</ListItem>
-              </Link>
-              <Link to="/logout">
-                <ListItem>Log Out</ListItem>
-              </Link>
-            </>) : (
-              <Link to="/login">
-                <ListItem>Log In</ListItem>
-              </Link>
+            isLogin ? (
+              <>
+                <Link to="/orders">
+                  <ListItem>Order Record</ListItem>
+                </Link>
+                <Link to="/logout">
+                  <ListItem>Log Out</ListItem>
+                </Link>
+              </>) : (
+              <>
+                <Link to="/login">
+                  <ListItem>Log In</ListItem>
+                </Link>
+                <Link to="/signup">
+                  <ListItem>Sign Up</ListItem>
+                </Link>
+              </>
+
             )
           }
           {/* <Link to="/orders">

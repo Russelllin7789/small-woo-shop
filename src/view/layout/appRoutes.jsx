@@ -15,6 +15,7 @@ import OrdersFailedPage from '../orders/orderFailedPage'
 import CartIndexPage from '../../view/cart/cartIndexPage'
 import CheckoutPage from '../../view/cart/checkoutPage'
 import CustomerLoginPage from '../customer/logInPage'
+import CustomerSignupPage from '../customer/signUpPage'
 import NoMatch from '../errors/404'
 
 import IsLogInContext from '../../context/isLoginContext';
@@ -47,6 +48,9 @@ const AppRoutes = () => {
       </Route>
       <Route path='/login' exact>
         <CustomerLoginPage />
+      </Route>
+      <Route path='/signup' exact>
+        <CustomerSignupPage />
       </Route>
       <Route
         path='/logout' exact
