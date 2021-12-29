@@ -32,9 +32,11 @@ const SignUpPage = () => {
       username: `${uiStatus.first_name} ${uiStatus.last_name}`
     })
 
-    if (customerService.isLoggedIn) {
-      setIsLogin(customerService.isLoggedIn)
+    if (customerService.isLoggedIn()) {
+      setIsLogin(customerService.isLoggedIn())
       window.location.replace('/')
+    } else {
+      alert('Sign Up Failed! T_____T')
     }
   }
 

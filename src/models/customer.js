@@ -1,6 +1,7 @@
 import React from "react";
+import shopModel from "./shopModel";
 
-class Customer {
+class Customer extends shopModel {
 
 }
 

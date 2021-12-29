@@ -46,11 +46,9 @@ const AppRoutes = () => {
       </Route>
       <Route path='/checkout' exact element={<CheckoutPage />}>
       </Route>
-      <Route path='/login' exact>
-        <CustomerLoginPage />
+      <Route path='/login' exact element={<CustomerLoginPage />}>
       </Route>
-      <Route path='/signup' exact>
-        <CustomerSignupPage />
+      <Route path='/signup' exact element={<CustomerSignupPage />}>
       </Route>
       <Route
         path='/logout' exact

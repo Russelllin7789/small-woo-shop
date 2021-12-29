@@ -28,8 +28,8 @@ function LogInPage() {
       uiStatus.password
     )
 
-    if (customerService.isLoggedIn) {
-      setIsLogin(customerService.isLoggedIn)
+    if (customerService.isLoggedIn()) {
+      setIsLogin(customerService.isLoggedIn())
       window.location.replace('/')
     }
   }
@@ -37,7 +37,7 @@ function LogInPage() {
   return (
     <Grid>
       <Row>
-        <Cell desktopColumns={3} phoneColumns={0} tabletColumns={6}></Cell>
+        <Cell desktopColumns={3} phoneColumns={0} tabletColumns={1}></Cell>
         <Cell desktopColumns={6} phoneColumns={4} tabletColumns={6}>
           <div style={{ padding: '80px 0px' }}>
             <h1 style={{ textAlign: 'center', paddingBottom: '24pxpx' }}>Sign In</h1>
@@ -77,7 +77,7 @@ function LogInPage() {
             }
           </div>
         </Cell>
-        <Cell desktopColumns={3} phoneColumns={0} tabletColumns={6}></Cell>
+        <Cell desktopColumns={3} phoneColumns={0} tabletColumns={1}></Cell>
       </Row>
     </Grid>
   )

@@ -14,7 +14,8 @@ const WooCommerce = new WooCommerceRestApi({
 class CustomerService {
   constructor() {
     this.customerStorage = Cookies.get(CUSTOMER_KEY)
-    if (this.customerStorage === null) {
+    console.log('here:', this.customerStorage)
+    if (!!this.customerStorage) {
       this.clearCustomerStorage()
     } else {
       this.customerStorage = JSON.parse(this.customerStorage)
@@ -80,12 +81,9 @@ class CustomerService {
   signUp = (data) => {
     return WooCommerce.post('customers', data)
       .then((response) => {
-        if (response.data.length > 0) {
-          const customer = new Customer(response.data[0])
-          this.setCustomerIdToCookie(customer.id)
-        } else {
-          return null
-        }
+        const customer = new Customer(response.data[0])
+        this.setCustomerIdToCookie(customer.id)
+        return customer
       })
       .catch((error) => {
         console.log(error.response)
