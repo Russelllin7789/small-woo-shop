@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {
   Link,
 } from 'react-router-dom';
@@ -13,9 +13,11 @@ import MaterialIcon from '@material/react-material-icon';
 import Drawer from '@material/react-drawer';
 import List, { ListItem } from '@material/react-list';
 import CartItemsPopUp from './cartItemsPopup';
+import IsLogInContext from '../../context/isLoginContext';
 
 const Nav = () => {
   const [open, setOpen] = useState(false)
+  const [isLogin, setIsLogin] = useContext(IsLogInContext)
 
   return (
     <>
@@ -36,12 +38,24 @@ const Nav = () => {
           <Link to="/cart">
             <ListItem>Cart</ListItem>
           </Link>
-          <Link to="/orders">
+          {
+            isLogin ? (<>
+              <Link to="/orders">
+                <ListItem>Order Record</ListItem>
+              </Link>
+              <Link to="/logout">
+                <ListItem>Log Out</ListItem>
+              </Link>
+            </>) : (
+              <Link to="/login">
+                <ListItem>Log In</ListItem>
+              </Link>
+            )
+          }
+          {/* <Link to="/orders">
             <ListItem>Order Record</ListItem>
-          </Link>
-          <Link to="/login">
-            <ListItem>Log In</ListItem>
-          </Link>
+          </Link> */}
+
         </List>
       </Drawer>
       <TopAppBar>

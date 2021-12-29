@@ -3,6 +3,7 @@ import { Cell, Grid, Row } from '@material/react-layout-grid'
 import TextField, { Input } from '@material/react-text-field'
 import Button from '@material/react-button'
 import CustomerService from "../../services/customerService";
+import IsLogInContext from "../../context/isLoginContext";
 
 const customerService = new CustomerService()
 
@@ -12,6 +13,8 @@ function LogInPage() {
     password: '',
     isLoading: false
   })
+
+  const [isLogin, setIsLogin] = useContext(IsLogInContext)
 
   const typeInInput = (e) => {
     const { value, name } = e.target
@@ -24,6 +27,11 @@ function LogInPage() {
       uiStatus.email,
       uiStatus.password
     )
+
+    if (customerService.isLoggedIn) {
+      setIsLogin(customerService.isLoggedIn)
+      window.location.replace('/')
+    }
   }
 
   return (

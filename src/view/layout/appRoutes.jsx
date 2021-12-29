@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   Routes,
   Route,
@@ -17,7 +17,14 @@ import CheckoutPage from '../../view/cart/checkoutPage'
 import CustomerLoginPage from '../customer/logInPage'
 import NoMatch from '../errors/404'
 
+import IsLogInContext from '../../context/isLoginContext';
+import CustomerService from '../../services/customerService';
+
+const customerService = new CustomerService()
+
 const AppRoutes = () => {
+  const [isLogin, setIsLogin] = useContext(IsLogInContext)
+
   return (
     <Routes>
       <Route path='/' exact element={<HomePage />}>
@@ -44,6 +51,8 @@ const AppRoutes = () => {
       <Route
         path='/logout' exact
         render={() => {
+          customerService.logOut()
+          setIsLogin(false)
           return <Navigate to='/' />
         }
         } />
