@@ -14,11 +14,12 @@ const WooCommerce = new WooCommerceRestApi({
 class CustomerService {
   constructor() {
     this.customerStorage = Cookies.get(CUSTOMER_KEY)
-    console.log('here:', this.customerStorage)
+    console.log('customerStorage:', this.customerStorage)
     if (!!this.customerStorage) {
       this.clearCustomerStorage()
     } else {
       this.customerStorage = JSON.parse(this.customerStorage)
+      console.log('after parse:', this.customerStorage)
     }
   }
 

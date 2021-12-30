@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import Button from '@material/react-button'
 import CartContext from "../../context/cartContext";
+import IsLogInContext from "../../context/isLoginContext";
 import OrderService from "../../services/orderService";
 import CartService from '../../services/cartService'
 import CustomerService from "../../services/customerService";
@@ -51,6 +52,7 @@ const CheckoutPage = () => {
   const [cartItemDetails] = useContext(CartContext)
   const { shipping } = data
   const buttonText = (submitting) ? '結帳中，請稍候...' : '去結帳'
+  const [isLogin, setIsLogin] = useContext(IsLogInContext)
 
   data.line_items = cartItemDetails.map((item) => {
     return {
@@ -65,7 +67,8 @@ const CheckoutPage = () => {
   }, [])
 
   // block the check out process if user was not logging in
-  if (!customerService.isLoggedIn()) {
+  if (!isLogin) {
+    customerService.setShouldBackToCheckOut()
     window.location.replace('/login')
     return null
   }
