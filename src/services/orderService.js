@@ -10,6 +10,11 @@ const WooCommerce = new WooCommerceRestApi({
 
 class OrderService {
   submitOrder = (data) => {
+    if (!data.customer_id) {
+      return new Promise((resolve) => {
+        resolve(null)
+      })
+    }
     return WooCommerce.post('orders', data)
       .then((response) => {
         console.log('data:', response.data)

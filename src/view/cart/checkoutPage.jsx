@@ -3,14 +3,16 @@ import Button from '@material/react-button'
 import CartContext from "../../context/cartContext";
 import OrderService from "../../services/orderService";
 import CartService from '../../services/cartService'
+import CustomerService from "../../services/customerService";
 
 const orderService = new OrderService()
 const cartService = new CartService()
+const customerService = new CustomerService()
 
 const data = {
   payment_method: "bacs",
   payment_method_title: "Direct Bank Transfer",
-  set_paid: true,
+  set_paid: true, // should be false for bank transfer
   billing: {
     first_name: "Russell",
     last_name: "Lin",
@@ -40,7 +42,8 @@ const data = {
       method_title: "Flat Rate",
       total: '10.00'
     }
-  ]
+  ],
+  customer_id: customerService.getCustomerIdFromCookie()
 };
 
 const CheckoutPage = () => {
@@ -60,6 +63,12 @@ const CheckoutPage = () => {
     orderService.getPaymentGateways()
     orderService.getShippingMethods()
   }, [])
+
+  // block the check out process if user was not logging in
+  if (!customerService.isLoggedIn()) {
+    window.location.replace('/login')
+    return null
+  }
 
   return (
     <div style={{ margin: 'auto', maxWidth: '1200px', textAlign: 'center' }}>
