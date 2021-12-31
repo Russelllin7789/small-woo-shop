@@ -25,6 +25,11 @@ const customerService = new CustomerService()
 
 const AppRoutes = () => {
   const [isLogin, setIsLogin] = useContext(IsLogInContext)
+  const logOut = () => {
+    customerService.logOut()
+    setIsLogin(false)
+    return <Navigate to='/' />
+  }
 
   return (
     <Routes>
@@ -50,14 +55,16 @@ const AppRoutes = () => {
       </Route>
       <Route path='/signup' exact element={<CustomerSignupPage />}>
       </Route>
-      <Route
+      {/* <Route
         path='/logout' exact
         render={() => {
           customerService.logOut()
           setIsLogin(false)
           return <Navigate to='/' />
         }
-        } />
+        } /> */}
+      <Route path='/logout' exact element={logOut()}>
+      </Route>
       <Route path='*' element={<NoMatch />}>
       </Route>
     </Routes>

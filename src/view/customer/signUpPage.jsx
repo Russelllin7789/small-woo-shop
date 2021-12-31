@@ -21,6 +21,7 @@ const SignUpPage = () => {
   const typeInInput = (e) => {
     const { value, name } = e.target
     setUIStatus({ ...uiStatus, [name]: value })
+    console.log('uiStatus:', uiStatus)
   }
 
   const tryToSignUp = async (e) => {
@@ -32,9 +33,11 @@ const SignUpPage = () => {
       username: `${uiStatus.first_name} ${uiStatus.last_name}`
     })
 
-    if (customerService.isLoggedIn()) {
-      setIsLogin(customerService.isLoggedIn())
-      window.location.replace('/')
+    console.log('result:', result)
+
+    if (customerService.isLoggedIn) {
+      setIsLogin(customerService.isLoggedIn)
+      // window.location.replace('/')
     } else {
       alert('Sign Up Failed! T_____T')
     }

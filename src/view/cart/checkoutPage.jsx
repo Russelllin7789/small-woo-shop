@@ -67,6 +67,7 @@ const CheckoutPage = () => {
   }, [])
 
   // block the check out process if user was not logging in
+  // use value in global state rather than value in the services (might be affected by cache)
   if (!isLogin) {
     customerService.setShouldBackToCheckOut()
     window.location.replace('/login')

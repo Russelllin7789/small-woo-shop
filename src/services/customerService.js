@@ -37,7 +37,7 @@ class CustomerService {
     this.saveToCustomerStorage()
   }
 
-  isLoggedIn = () => {
+  get isLoggedIn() {
     return this.getCustomerIdFromCookie() !== null
   }
 
@@ -82,12 +82,13 @@ class CustomerService {
   signUp = (data) => {
     return WooCommerce.post('customers', data)
       .then((response) => {
-        const customer = new Customer(response.data[0])
+        const customer = response.data
         this.setCustomerIdToCookie(customer.id)
+        console.log('customer:', customer)
         return customer
       })
       .catch((error) => {
-        console.log(error.response)
+        console.log(error)
         return null
       })
   }
@@ -95,6 +96,20 @@ class CustomerService {
   logOut = () => {
     this.customerStorage['customerId'] = null
     this.saveToCustomerStorage()
+  }
+
+  setShouldBackToCheckOut = () => {
+    this.customerStorage['setShouldBackToCheckOut'] = true
+    this.saveToCustomerStorage()
+  }
+
+  clearShouldBackToCheckOut = () => {
+    this.customerStorage['setShouldBackToCheckOut'] = null
+    this.saveToCustomerStorage()
+  }
+
+  get shouldBackToCheckOut() {
+    return !!this.customerStorage['setShouldBackToCheckOut']
   }
 }
 

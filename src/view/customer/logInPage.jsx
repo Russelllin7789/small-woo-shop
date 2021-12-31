@@ -28,9 +28,14 @@ function LogInPage() {
       uiStatus.password
     )
 
-    if (customerService.isLoggedIn()) {
-      setIsLogin(customerService.isLoggedIn())
-      window.location.replace('/')
+    if (customerService.isLoggedIn) {
+      setIsLogin(customerService.isLoggedIn)
+      if (customerService.shouldBackToCheckOut) {
+        customerService.clearShouldBackToCheckOut()
+        window.location.replace('/checkout')
+      } else {
+        window.location.replace('/')
+      }
     }
   }
 

@@ -44,7 +44,7 @@ const mergeQuantityToCartItemsDetail = (
 
 const App = () => {
   const [cartItemDetails, setCartItemDetails] = useState([])
-  const [isLogIn, setIsLogIn] = useState(customerService.isLoggedIn())
+  const [isLogIn, setIsLogIn] = useState(customerService.isLoggedIn)
 
   return (
     <IsLogInContext.Provider value={[isLogIn, setIsLogIn]}>
